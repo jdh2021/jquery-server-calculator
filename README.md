@@ -17,6 +17,7 @@ Additional README details can be found [here](https://github.com/PrimeAcademy/re
 
 - [X] Create layout and inputs for base calculator
 - [X] Create layout and inputs for stretch calculator
+- [X] Add delete history and recalculate butttons for stretch calculator
 
 - [X] Create click event handlers that get value of button clicked
 - [X] Create object to store data from inputs

@@ -8,6 +8,8 @@
         <script src="./scripts/bootstrap.bundle.js" async></script>
         <!--- Sourcing in Google font-->
         <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+        <!---Sourcing in Font Awesome icons-->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" integrity="sha384-/frq1SRXYH/bSyou/HUp/hib7RVN1TawQYja658FEOodR/FQBKVqT9Ol+Oz3Olq5" crossorigin="anonymous"/>
         <link rel="stylesheet" href="./styles/style.css">
     <title>jQuery Server Calculator</title>
     </head>
@@ -36,7 +38,7 @@
                 </div>
             <div class="row">
                 <div class="col my-3">
-                    <textarea readonly id="baseCalculationField" rows="2"></textarea>
+                    <textarea readonly id="baseCalculationField" rows="2" placeholder="Answer"></textarea>
                 </div>
             </div>
         </div>
@@ -148,8 +150,17 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col my-3 stretchHistory">
-                        <ul class="full-width p-3">HISTORY</ul>
+                    <div class="col my-1">
+                        <div class="row full-width py-2">
+                            <div class="col stretch-results">CALCULATIONS</div>
+                            <div class="col stretch-right"> <span class="btn btn-sm"><i class="fa-solid fa-eraser"></i></span></div>
+                        </div>
+                        <div class="col stretch-results">
+                            <ul class="fa-ul" id="stretch-history">
+                                <li><span class="fa-li"><i class="fa-solid fa-calculator"></i></span>Answer = First Number Operator Second Number
+                                    <span class="btn btn-sm"><i class="fa-solid fa-arrows-rotate"></i></span></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>

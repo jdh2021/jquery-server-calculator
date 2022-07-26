@@ -34,9 +34,16 @@ body {
     border-radius: 6px;
 }
 
-.stretchHistory {
+.stretch-results {
     text-align: left;
     font-weight: bold;
 }
 
+.stretch-right {
+    text-align: right;
+    align-items: right;
+}
 
+.fa-ul, .fa-li {
+    text-align: left;
+}

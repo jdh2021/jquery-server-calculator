@@ -12,6 +12,8 @@ function readyNow() {
     $('.number-button-stretch').on('click', getNumbersStretch);
     $('.operator-button-stretch').on('click', getOperatorStretch);
     $('#clear-button-stretch').on('click', clearNumbersStretch);
+    $('body').on('click', '.fa-arrows-rotate', recalculate);
+    $('body').on('click', '.fa-eraser', deleteCalculationHistory);
 }
 
 //object for base calculator
@@ -86,4 +88,14 @@ function clearNumbersStretch() {
     stretchCalculatorObject.operatorStretch = '';
     stretchCalculatorObject.secondNumberStretch = '';
     console.log(stretchCalculatorObject);
+}
+
+//delete history of calculations stretch history
+function deleteCalculationHistory() {
+    console.log('in deleteCalculationHistory');
+}
+
+//rerun the historical calculation in stretch calculator
+function recalculate() {
+    console.log('in recalculate');
 }
