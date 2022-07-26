@@ -4,4 +4,86 @@ $(readyNow);
 
 function readyNow() {
     console.log('jQuery sourced');
+    //base calculator click event handlers
+    $('.operator-button').on('click', getOperatorBase);
+    $('#equal-button').on('click', getNumbersBase);
+    $('#clear-button').on('click', clearNumbersBase);
+    //stretch calculator click event handlers
+    $('.number-button-stretch').on('click', getNumbersStretch);
+    $('.operator-button-stretch').on('click', getOperatorStretch);
+    $('#clear-button-stretch').on('click', clearNumbersStretch);
+}
+
+//object for base calculator
+const baseCalculatorObject = {
+    firstNumberBase: '',
+    operatorBase: '' ,
+    secondNumberBase: '',
+};
+
+//object for stretch calculator
+const stretchCalculatorObject = {
+    firstNumberStretch: '',
+    operatorStretch: '',
+    secondNumberStretch: '',
+}
+
+//store operator in base calculator object
+function getOperatorBase() {
+    console.log('in getOperatorBase');
+    baseCalculatorObject.operatorBase = $(this).data('operator');
+}
+
+//store first number input and second number input in base calculator object
+function getNumbersBase() {
+    console.log('in getNumbersBase');
+    baseCalculatorObject.firstNumberBase = $('#first-number').val();
+    baseCalculatorObject.secondNumberBase = $('#second-number').val();
+    console.log(baseCalculatorObject);
+}
+
+// clear base calculator input values and object properties
+function clearNumbersBase() {
+    console.log('in clearNumbersBase');
+    $('#first-number').val('');
+    $('#second-number').val('');
+    baseCalculatorObject.firstNumberBase = '';
+    baseCalculatorObject.operatorBase = '';
+    baseCalculatorObject.secondNumberBase = '';
+    console.log(baseCalculatorObject);
+};
+
+//store first and second number input in stretch calculator object
+function getNumbersStretch() {
+    console.log('in getNumbersStretch');
+    if(stretchCalculatorObject.operatorStretch === '') {        
+        stretchCalculatorObject.firstNumberStretch += $(this).data('value');
+    } else {
+        stretchCalculatorObject.secondNumberStretch += $(this).data('value');
+    }
+    console.log(stretchCalculatorObject);
+    displayInput();
+}
+
+//store operator in stretch calculator object
+function getOperatorStretch() {
+    console.log('in getOperatorStretch');
+    stretchCalculatorObject.operatorStretch = $(this).data('value');
+    displayInput();
+}
+
+//display input in stretch calculation field
+function displayInput() {
+    console.log('in displayInput');
+    $('#stretchCalculationField').html(`<input type="text" class="full-width" readonly value="${stretchCalculatorObject.firstNumberStretch} ${stretchCalculatorObject.operatorStretch} ${stretchCalculatorObject.secondNumberStretch}">`);
+}
+
+//clear stretch calculator input values and object properties
+function clearNumbersStretch() {
+    console.log('in clearNumbersStretch');
+    $('#stretchCalculationField').html(`<input type="text" class="full-width" readonly>`);
+    stretchCalculatorObject.firstNumberStretch = '';
+    stretchCalculatorObject.operatorStretch = '';
+    stretchCalculatorObject.secondNumberStretch = '';
+    console.log(stretchCalculatorObject);
 }

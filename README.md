@@ -15,5 +15,12 @@ Additional README details can be found [here](https://github.com/PrimeAcademy/re
 - [X] Source css, javascript, jQuery
 - [X] Set up and test server
 
-- [ ] Create layout and inputs for base calculator
-- [ ] Create layout and inputs for stretch calculator
+- [X] Create layout and inputs for base calculator
+- [X] Create layout and inputs for stretch calculator
+
+- [X] Create click event handlers that get value of button clicked
+- [X] Create object to store data from inputs
+- [X] Display input in stretch calculation field
+
+
+
