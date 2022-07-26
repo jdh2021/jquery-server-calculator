@@ -3,10 +3,157 @@
     <head>
         <script src="./vendors/jquery.js"></script>
         <script src="./scripts/client.js"></script>
+        <!---Sourcing Bootstrap-->
+        <link rel="stylesheet" href="./styles/bootstrap.css">
+        <script src="./scripts/bootstrap.bundle.js" async></script>
+        <!--- Sourcing in Google font-->
+        <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="./styles/style.css">
     <title>jQuery Server Calculator</title>
     </head>
     <body>
-    <h1>jQuery Server Calculator</h1>
+    <div class="container mt-5">
+        <h1 class="title">jQuery Server Calculators</h1>
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8 shadow-lg baseCalc">
+            <div class="row">
+                <div class="col my-3 calc-type">BASE</div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <input type="number" placeholder="First Number">
+                    <input type="button" value="+">
+                    <input type="button" value="-">
+                    <input type="button" value="*">
+                    <input type="button" value="/">
+                    <input type="number" placeholder="Second Number">
+                    <input type="button" value="=">
+                    <input type="button" value="C">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col my-3">
+                    <textarea readonly id="baseHistory" rows="2" placeholder="Result"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8 shadow-lg stretchCalc">
+                <div class="row">
+                    <div class="col my-3 calc-type">STRETCH</div>
+                </div>
+                <div class="row g-0">
+                    <div class="col-9">
+                        <input type="text" class="full-width" readonly id="result">
+                    </div>
+                    <div class="col-3">
+                        <input type="button" value="C" class="full-width">
+                    </div>
+                </div>
+                <div class="row g-0">
+                    <div class="col-3">
+                        <div class="row">
+                            <div class="col">
+                                <input type="button" value="7" class="full-width">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <input type="button" value="4" class="full-width">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <input type="button" value="1" class="full-width">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <input type="button" value="0" class="full-width">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="row">
+                            <div class="col">
+                                <input type="button" value="8" class="full-width">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <input type="button" value="5" class="full-width">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <input type="button" value="2" class="full-width">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <input type="button" value="." class="full-width">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="row">
+                            <div class="col">
+                                <input type="button" value="9" class="full-width">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <input type="button" value="6" class="full-width">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <input type="button" value="3" class="full-width">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <input type="button" value="=" class="full-width">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="row">
+                            <div class="col">
+                                <input type="button" value="+" class="full-width">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <input type="button" value="-" class="full-width">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <input type="button" value="*" class="full-width">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <input type="button" value="/" class="full-width">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col my-3 stretchHistory">
+                        <ul class="full-width p-3">HISTORY</ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     </body>
 </html>

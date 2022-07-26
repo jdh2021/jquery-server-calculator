@@ -1,3 +1,42 @@
 body {
-    background-color: #E5FFF0;
+    background-color: #FF3786;
+    margin: 0;
+    font-family: 'Orbitron', sans-serif;
 }
+
+.title {
+    font-weight: bold;
+    color: white;
+}
+
+.container {
+    text-align: center;
+    justify-content: justify;
+    align-items: center; 
+}
+
+.calc-type {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.baseCalc {
+    background-color: #B7FFCE;
+    border-radius: 6px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.stretchCalc {
+    background-color: #6BF98A;
+    border-radius: 6px;
+}
+
+.stretchHistory {
+    text-align: left;
+    font-weight: bold;
+}
+
+

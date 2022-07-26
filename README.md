@@ -13,7 +13,7 @@ Additional README details can be found [here](https://github.com/PrimeAcademy/re
 ## Part 1
 - [X] Set up file structure:
 - [X] Source css, javascript, jQuery
-- [ ] Set up and test server
+- [X] Set up and test server
 
 - [ ] Create layout and inputs for base calculator
 - [ ] Create layout and inputs for stretch calculator
