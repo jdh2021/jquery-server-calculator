@@ -28,5 +28,11 @@ Additional README details can be found [here](https://github.com/PrimeAcademy/re
 - [X] Make POST request to server to send stretch calculator object
 - [X] Make GET request from server to get stretch calculation data
 
+- [X] Display historical calculations on page load
+
+- [ ] Add conditionals to only allow entries when all inputs are provided
+- [ ] Make a DELETE request to server to remove stretch calculator data
+- [ ] Create a re-run calculation function for entry in stretch calculations history
+
 
 

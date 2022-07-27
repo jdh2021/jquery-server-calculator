@@ -8,6 +8,7 @@ function readyNow() {
     $('.operator-button').on('click', getOperatorBase);
     $('#equal-button').on('click', getNumbersBase);
     $('#clear-button').on('click', clearNumbersBase);
+    baseCalculationsFromServer();
     //stretch calculator click event handlers
     $('.number-button-stretch').on('click', getNumbersStretch);
     $('.operator-button-stretch').on('click', getOperatorStretch);
@@ -15,6 +16,7 @@ function readyNow() {
     $('#clear-button-stretch').on('click', clearNumbersStretch);
     $('body').on('click', '.fa-arrows-rotate', recalculate);
     $('body').on('click', '.fa-eraser', deleteCalculationHistory);
+    stretchCalculationsFromServer();
 }
 
 //object for base calculator
