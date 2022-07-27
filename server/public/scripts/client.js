@@ -11,6 +11,7 @@ function readyNow() {
     //stretch calculator click event handlers
     $('.number-button-stretch').on('click', getNumbersStretch);
     $('.operator-button-stretch').on('click', getOperatorStretch);
+    $('#equal-button-stretch').on('click', stretchCalculatorToServer);
     $('#clear-button-stretch').on('click', clearNumbersStretch);
     $('body').on('click', '.fa-arrows-rotate', recalculate);
     $('body').on('click', '.fa-eraser', deleteCalculationHistory);
@@ -22,13 +23,6 @@ const baseCalculatorObject = {
     operatorBase: '' ,
     secondNumberBase: '',
 };
-
-//object for stretch calculator
-const stretchCalculatorObject = {
-    firstNumberStretch: '',
-    operatorStretch: '',
-    secondNumberStretch: '',
-}
 
 //store operator in base calculator object
 function getOperatorBase() {
@@ -45,7 +39,7 @@ function getNumbersBase() {
     baseCalculatorToServer();
 }
 
-//make POST request to server
+//make POST request to server to send base calculator object
 function baseCalculatorToServer () {
     $.ajax({
         method: 'POST',
@@ -61,7 +55,7 @@ function baseCalculatorToServer () {
     })
 }
 
-//make GET request from server
+//make GET request from server to get base calculations
 function baseCalculationFromServer() {
     $.ajax({
         method: 'GET',
@@ -91,6 +85,13 @@ function clearNumbersBase() {
     console.log(baseCalculatorObject);
 };
 
+//object for stretch calculator
+const stretchCalculatorObject = {
+    firstNumberStretch: '',
+    operatorStretch: '',
+    secondNumberStretch: '',
+}
+
 //store first and second number input in stretch calculator object
 function getNumbersStretch() {
     console.log('in getNumbersStretch');
@@ -114,6 +115,21 @@ function getOperatorStretch() {
 function displayInput() {
     console.log('in displayInput');
     $('#stretchCalculationField').html(`<input type="text" class="full-width" readonly value="${stretchCalculatorObject.firstNumberStretch} ${stretchCalculatorObject.operatorStretch} ${stretchCalculatorObject.secondNumberStretch}">`);
+}
+
+//make POST request to server to send stretch calculator object
+function stretchCalculatorToServer () {
+    $.ajax({
+        method: 'POST',
+        url: '/stretchcalculations',
+        data: stretchCalculatorObject
+    }).then(function(response) {
+        console.log('Back from POST', response);
+        clearNumbersStretch();
+    }).catch(function(error) {
+        console.log('Error', error);
+        alert('There\'s an error.');
+    })
 }
 
 //clear stretch calculator input values and object properties

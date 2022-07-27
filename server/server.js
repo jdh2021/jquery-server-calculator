@@ -32,6 +32,29 @@ app.get('/basecalculations', (req, res) => {
     res.send(baseCalculationsArray);
 })
 
+const stretchCalculationsArray = [];
+
+app.post('/stretchcalculations', (req, res) => {
+    console.log('in stretchcalculations POST');
+    let stretchCalculatorObject = req.body;
+    switch(stretchCalculatorObject.operatorStretch) {
+        case ('+'):
+            stretchCalculatorObject.total = Number(stretchCalculatorObject.firstNumberStretch) + Number(stretchCalculatorObject.secondNumberStretch);
+            break;
+        case ('-'):
+            stretchCalculatorObject.total = Number(stretchCalculatorObject.firstNumberStretch) - Number(stretchCalculatorObject.secondNumberStretch);
+            break;
+        case ('*'):
+            stretchCalculatorObject.total = Number(stretchCalculatorObject.firstNumberStretch) * Number(stretchCalculatorObject.secondNumberStretch);
+            break;
+        case ('/'):
+            stretchCalculatorObject.total = Number(stretchCalculatorObject.firstNumberStretch) / Number(stretchCalculatorObject.secondNumberStretch);
+            break;
+    }
+    stretchCalculationsArray.push(stretchCalculatorObject);
+    res.sendStatus(201);
+})
+
 app.listen(port, () => {
     console.log('listening on port', port);
 })
