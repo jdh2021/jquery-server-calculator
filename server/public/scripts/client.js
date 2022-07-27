@@ -46,8 +46,8 @@ function baseCalculatorToServer () {
         url: '/basecalculations',
         data: baseCalculatorObject
     }).then(function(response) {
-        console.log('Back from POST', response);
-        baseCalculationFromServer();
+        console.log('Back from POST:', response);
+        baseCalculationsFromServer();
         clearNumbersBase();
     }).catch(function(error) {
         console.log('Error', error);
@@ -56,12 +56,12 @@ function baseCalculatorToServer () {
 }
 
 //make GET request from server to get base calculations
-function baseCalculationFromServer() {
+function baseCalculationsFromServer() {
     $.ajax({
         method: 'GET',
         url: '/basecalculations'
     }).then(function(response) {
-        console.log('Calculation from server', response);
+        console.log('Calculation from server:', response);
         $('#baseCalculationsResult').empty();
         $('#baseCalculationsHistory').empty();
         let baseCalculations = response;
@@ -124,12 +124,33 @@ function stretchCalculatorToServer () {
         url: '/stretchcalculations',
         data: stretchCalculatorObject
     }).then(function(response) {
-        console.log('Back from POST', response);
+        console.log('Back from POST:', response);
+        stretchCalculationsFromServer();
         clearNumbersStretch();
     }).catch(function(error) {
         console.log('Error', error);
         alert('There\'s an error.');
     })
+}
+
+function stretchCalculationsFromServer() {
+    $.ajax({
+        method: 'GET',
+        url: '/stretchcalculations'
+    }).then(function(response) {
+        console.log('Calculation from server:', response);
+        $('#stretch-history').empty();
+        let stretchCalculations = response;
+        for (let calculation of stretchCalculations) {
+            $('#stretch-history').append(`
+                <li><span class="fa-li"><i class="fa-solid fa-calculator"></i></span>${calculation.total} = ${calculation.firstNumberStretch} ${calculation.operatorStretch} ${calculation.secondNumberStretch}
+                <span class="btn btn-sm"><i class="fa-solid fa-arrows-rotate"></i></span></li>
+            `);
+        }
+    }).catch(function(error) {
+        console.log('Error', error);
+        alert('There\'s an error.');
+    });
 }
 
 //clear stretch calculator input values and object properties

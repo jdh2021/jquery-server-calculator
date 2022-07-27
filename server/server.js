@@ -55,6 +55,11 @@ app.post('/stretchcalculations', (req, res) => {
     res.sendStatus(201);
 })
 
+app.get('/stretchcalculations', (req, res) => {
+    console.log('in stretchcalculations GET');
+    res.send(stretchCalculationsArray);
+})
+
 app.listen(port, () => {
     console.log('listening on port', port);
 })
