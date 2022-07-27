@@ -41,7 +41,7 @@ body {
 
 .stretch-right {
     text-align: right;
-    align-items: right;
+    vertical-align: top;
 }
 
 .fa-ul, .fa-li {

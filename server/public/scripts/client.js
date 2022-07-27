@@ -42,6 +42,22 @@ function getNumbersBase() {
     baseCalculatorObject.firstNumberBase = $('#first-number').val();
     baseCalculatorObject.secondNumberBase = $('#second-number').val();
     console.log(baseCalculatorObject);
+    baseCalculatorToServer();
+}
+
+//make POST request to server
+function baseCalculatorToServer () {
+    $.ajax({
+        method: 'POST',
+        url: '/basecalculations',
+        data: baseCalculatorObject,
+    }).then(function(response) {
+        console.log('Back from POST', response);
+        clearNumbersBase();
+    }).catch(function(error) {
+        console.log('Error', error);
+        alert('There\'s an error.');
+    })
 }
 
 // clear base calculator input values and object properties
