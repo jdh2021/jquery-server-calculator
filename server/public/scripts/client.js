@@ -50,13 +50,33 @@ function baseCalculatorToServer () {
     $.ajax({
         method: 'POST',
         url: '/basecalculations',
-        data: baseCalculatorObject,
+        data: baseCalculatorObject
     }).then(function(response) {
         console.log('Back from POST', response);
+        baseCalculationFromServer();
         clearNumbersBase();
     }).catch(function(error) {
         console.log('Error', error);
         alert('There\'s an error.');
+    })
+}
+
+//make GET request from server
+function baseCalculationFromServer() {
+    $.ajax({
+        method: 'GET',
+        url: '/basecalculations'
+    }).then(function(response) {
+        console.log('Calculation from server', response);
+        $('#baseCalculationsResult').empty();
+        $('#baseCalculationsHistory').empty();
+        let baseCalculations = response;
+        for(let calculation of baseCalculations) {
+            $('#baseCalculationsResult').html(`${calculation.total}`);
+            $('#baseCalculationsHistory').append(`
+                <li>${calculation.total} = ${calculation.firstNumberBase} ${calculation.operatorBase} ${calculation.secondNumberBase}</li>
+            `);
+        } 
     })
 }
 

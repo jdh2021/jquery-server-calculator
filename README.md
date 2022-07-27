@@ -24,7 +24,7 @@ Additional README details can be found [here](https://github.com/PrimeAcademy/re
 - [X] Display input in stretch calculation field
 
 - [X] Make POST request to server to send base calculator object
-- [ ] Make GET request from server to get base calculation data
+- [X] Make GET request from server to get base calculation data
 - [ ] Make POST request to server to send stretch calculator object
 - [ ] Make GET request from server to get stretch calculation data
 

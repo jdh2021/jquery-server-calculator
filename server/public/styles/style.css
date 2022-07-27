@@ -25,6 +25,16 @@ body {
     border-radius: 6px;
 }
 
+#baseCalculationsHistory {
+    text-align: left;
+}
+
+#baseCalculationsResult {
+    text-align: left;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
 .full-width {
     width: 100%;
 }

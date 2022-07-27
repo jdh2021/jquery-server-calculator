@@ -17,14 +17,19 @@ app.post('/basecalculations', (req, res) => {
             baseCalculatorObject.total = Number(baseCalculatorObject.firstNumberBase) - Number(baseCalculatorObject.secondNumberBase);
             break;
         case ('*'):
-            baseCalculatorObject.total = Number(baseCalculatorObject.firstNumberBase) - Number(baseCalculatorObject.secondNumberBase);
+            baseCalculatorObject.total = Number(baseCalculatorObject.firstNumberBase) * Number(baseCalculatorObject.secondNumberBase);
             break;
         case ('/'):
-            baseCalculatorObject.total = Number(baseCalculatorObject.firstNumberBase) - Number(baseCalculatorObject.secondNumberBase);
+            baseCalculatorObject.total = Number(baseCalculatorObject.firstNumberBase) / Number(baseCalculatorObject.secondNumberBase);
             break;
     }
     baseCalculationsArray.push(baseCalculatorObject);
     res.sendStatus(201);
+})
+
+app.get('/basecalculations', (req, res) => {
+    console.log('in basecalculations GET');
+    res.send(baseCalculationsArray);
 })
 
 app.listen(port, () => {
