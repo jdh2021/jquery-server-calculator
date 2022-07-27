@@ -59,7 +59,7 @@ function baseCalculatorToServer () {
         }).catch(function(error) {
             console.log('Error', error);
             alert('There\'s an error.');
-        })
+        });
     }
 }
 
@@ -69,7 +69,7 @@ function baseCalculationsFromServer() {
         method: 'GET',
         url: '/basecalculations'
     }).then(function(response) {
-        console.log('Calculation from server:', response);
+        console.log('Base calculations from server:', response);
         $('#baseCalculationsResult').empty();
         $('#baseCalculationsHistory').empty();
         let baseCalculations = response;
@@ -153,7 +153,7 @@ function stretchCalculationsFromServer() {
         method: 'GET',
         url: '/stretchcalculations'
     }).then(function(response) {
-        console.log('Calculation from server:', response);
+        console.log('Stretch calculations from server:', response);
         $('#stretch-history').empty();
         let stretchCalculations = response;
         for (let calculation of stretchCalculations) {
@@ -182,6 +182,16 @@ function clearNumbersStretch() {
 //delete history of calculations stretch history
 function deleteCalculationHistory() {
     console.log('in deleteCalculationHistory');
+    $.ajax ({
+        type: 'DELETE',
+        url: '/stretchcalculations',
+    }).then(function(response) {
+        console.log('Back from DELETE:', response);
+        stretchCalculationsFromServer();
+    }).catch(function(error) {
+        console.log('Error:', error);
+        alert('There\'s an error.');
+    });
 }
 
 //rerun the historical calculation in stretch calculator

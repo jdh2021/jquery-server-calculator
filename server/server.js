@@ -25,12 +25,12 @@ app.post('/basecalculations', (req, res) => {
     }
     baseCalculationsArray.push(baseCalculatorObject);
     res.sendStatus(201);
-})
+});
 
 app.get('/basecalculations', (req, res) => {
     console.log('in basecalculations GET');
     res.send(baseCalculationsArray);
-})
+});
 
 const stretchCalculationsArray = [];
 
@@ -53,13 +53,20 @@ app.post('/stretchcalculations', (req, res) => {
     }
     stretchCalculationsArray.push(stretchCalculatorObject);
     res.sendStatus(201);
-})
+});
 
 app.get('/stretchcalculations', (req, res) => {
     console.log('in stretchcalculations GET');
     res.send(stretchCalculationsArray);
-})
+});
+
+app.delete('/stretchcalculations', (req, res) => {
+    console.log('in stretchcalculations DELETE');
+    stretchCalculationsArray.splice(0, stretchCalculationsArray.length);
+    console.log(stretchCalculationsArray);
+    res.send(stretchCalculationsArray); 
+});
 
 app.listen(port, () => {
     console.log('listening on port', port);
-})
+});
