@@ -10,6 +10,7 @@ function readyNow() {
     $('#clear-button').on('click', clearNumbersBase);
     baseCalculationsFromServer();
     //stretch calculator click event handlers
+    clearNumbersStretch();
     $('.number-button-stretch').on('click', getNumbersStretch);
     $('.operator-button-stretch').on('click', getOperatorStretch);
     $('#equal-button-stretch').on('click', stretchCalculatorToServer);
@@ -43,18 +44,23 @@ function getNumbersBase() {
 
 //make POST request to server to send base calculator object
 function baseCalculatorToServer () {
-    $.ajax({
-        method: 'POST',
-        url: '/basecalculations',
-        data: baseCalculatorObject
-    }).then(function(response) {
-        console.log('Back from POST:', response);
-        baseCalculationsFromServer();
-        clearNumbersBase();
-    }).catch(function(error) {
-        console.log('Error', error);
-        alert('There\'s an error.');
-    })
+    if ($('#first-number').val() === '' || baseCalculatorObject.operatorBase === '' || $('#second-number').val() === ''){
+        alert('You haven\'t completed all fields.');
+        return false;
+    } else {
+        $.ajax({
+            method: 'POST',
+            url: '/basecalculations',
+            data: baseCalculatorObject
+        }).then(function(response) {
+            console.log('Back from POST:', response);
+            baseCalculationsFromServer();
+            clearNumbersBase();
+        }).catch(function(error) {
+            console.log('Error', error);
+            alert('There\'s an error.');
+        })
+    }
 }
 
 //make GET request from server to get base calculations
@@ -121,18 +127,25 @@ function displayInput() {
 
 //make POST request to server to send stretch calculator object
 function stretchCalculatorToServer () {
-    $.ajax({
-        method: 'POST',
-        url: '/stretchcalculations',
-        data: stretchCalculatorObject
-    }).then(function(response) {
-        console.log('Back from POST:', response);
-        stretchCalculationsFromServer();
-        clearNumbersStretch();
-    }).catch(function(error) {
-        console.log('Error', error);
-        alert('There\'s an error.');
-    })
+    if ((stretchCalculatorObject.firstNumberStretch !== '' && stretchCalculatorObject.operatorStretch !== '' && stretchCalculatorObject.secondNumberStretch === '') ||
+        (stretchCalculatorObject.firstNumberStretch !== '' && stretchCalculatorObject.operatorStretch === '' && stretchCalculatorObject.secondNumberStretch === '') ||
+        (stretchCalculatorObject.firstNumberStretch === '' && stretchCalculatorObject.operatorStretch === '' && stretchCalculatorObject.secondNumberStretch === '')) {
+            alert('You haven\'t entered information to perform a calculation');
+            return false;
+    } else {
+        $.ajax({
+            method: 'POST',
+            url: '/stretchcalculations',
+            data: stretchCalculatorObject
+        }).then(function(response) {
+            console.log('Back from POST:', response);
+            stretchCalculationsFromServer();
+            clearNumbersStretch();
+        }).catch(function(error) {
+            console.log('Error', error);
+            alert('There\'s an error.');
+        });
+    }
 }
 
 function stretchCalculationsFromServer() {
@@ -145,10 +158,11 @@ function stretchCalculationsFromServer() {
         let stretchCalculations = response;
         for (let calculation of stretchCalculations) {
             $('#stretch-history').append(`
-                <li><span class="fa-li"><i class="fa-solid fa-calculator"></i></span>${calculation.total} = ${calculation.firstNumberStretch} ${calculation.operatorStretch} ${calculation.secondNumberStretch}
+                <li><span class="fa-li"><i class="fa-solid fa-calculator"></i></span><span class="stretch-total">${calculation.total}</span> = ${calculation.firstNumberStretch} ${calculation.operatorStretch} ${calculation.secondNumberStretch}
                 <span class="btn btn-sm"><i class="fa-solid fa-arrows-rotate"></i></span></li>
             `);
-        }
+            // $('#stretchCalculationField').html(`<input type="text" class="full-width" readonly value="${calculation.total}" />`);
+        }       
     }).catch(function(error) {
         console.log('Error', error);
         alert('There\'s an error.');

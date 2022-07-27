@@ -57,3 +57,8 @@ body {
 .fa-ul, .fa-li {
     text-align: left;
 }
+
+.stretch-total {
+    font-weight: bolder;
+    font-size: 1.15em;
+}
