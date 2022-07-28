@@ -8,7 +8,7 @@ In the stretch calculator, there is an option to re-run a previously listed calc
 
 ## Screen Shot
 
-![calculators] (images/jQueryServerCalculators.png)
+![calculators](images/jQueryServerCalculators.png)
 
 ## To-Do List
 
