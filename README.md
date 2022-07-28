@@ -6,6 +6,10 @@ I created two server-side calculators. The base calculator take in a first numbe
 
 In the stretch calculator, there is an option to re-run a previously listed calculation. The client sends the number and operator inputs from the calculation that was clicked on to the server. The server checks the array of stored calculation objects for a match based on these inputs. When a match is found, the server sends that calculation object with total back to the client. This calculator also has a delete capability. The client makes a DELETE request by clicking on the eraser button. The server receives the request and empties the array of stored calculations. The client loops through the emptied array, and no items are appended back to the page. 
 
+## Screen Shot
+
+![calculators] (images/jQueryServerCalculators.png)
+
 ## To-Do List
 
 ### Part 1
@@ -21,7 +25,6 @@ In the stretch calculator, there is an option to re-run a previously listed calc
 - [X] Create click event handlers that get value of button clicked
 - [X] Create object to store data from inputs
 - [X] Display input in stretch calculation field
-
 
 ### Part 3
 - [X] Make POST request to server to send base calculator object
