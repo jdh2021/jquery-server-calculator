@@ -27,13 +27,17 @@ const baseCalculatorObject = {
     secondNumberBase: '',
 };
 
-//store operator in base calculator object
+/** 
+ * Stores operator in base calculator object.
+*/
 function getOperatorBase() {
     console.log('in getOperatorBase');
     baseCalculatorObject.operatorBase = $(this).data('operator');
 }
 
-//store first number input and second number input in base calculator object
+/** 
+* Stores first number input and second number input in base calculator object. 
+*/
 function getNumbersBase() {
     console.log('in getNumbersBase');
     baseCalculatorObject.firstNumberBase = $('#first-number').val();
@@ -42,7 +46,10 @@ function getNumbersBase() {
     baseCalculatorToServer();
 }
 
-//make POST request to server to send base calculator object
+/** 
+* Makes a POST request to server to send base calculator object. If POST is successful, calls baseCalculationsFromServer for GET request.
+@return Returns false if required inputs are not completed.
+*/
 function baseCalculatorToServer () {
     if ($('#first-number').val() === '' || baseCalculatorObject.operatorBase === '' || $('#second-number').val() === ''){
         alert('You haven\'t completed all fields.');
@@ -63,26 +70,30 @@ function baseCalculatorToServer () {
     }
 }
 
-//make GET request from server to get base calculations
+/** 
+* Makes a GET request to server to retrieve baseCalculationsArray. Loops through the array and appends the calculation total, first number, operator, and second number to the ul element baseCalculationsHistory.
+*/
 function baseCalculationsFromServer() {
     $.ajax({
         method: 'GET',
         url: '/basecalculations'
     }).then(function(response) {
         console.log('Base calculations from server:', response);
-        $('#baseCalculationsResult').empty();
-        $('#baseCalculationsHistory').empty();
+        $('#base-calculations-result').empty();
+        $('#base-calculations-history').empty();
         let baseCalculations = response;
         for(let calculation of baseCalculations) {
-            $('#baseCalculationsResult').html(`${calculation.total}`);
-            $('#baseCalculationsHistory').append(`
+            $('#base-calculations-result').html(`${calculation.total}`);
+            $('#base-calculations-history').append(`
                 <li>${calculation.total} = ${calculation.firstNumberBase} ${calculation.operatorBase} ${calculation.secondNumberBase}</li>
             `);
         } 
     })
 }
 
-// clear base calculator input values and object properties
+/** 
+* Sets the value of the number input fields and the base calculator object properties to undefined.
+*/
 function clearNumbersBase() {
     console.log('in clearNumbersBase');
     $('#first-number').val('');
@@ -100,7 +111,9 @@ const stretchCalculatorObject = {
     secondNumberStretch: '',
 }
 
-//store first and second number input in stretch calculator object
+/** 
+* A conditional checks whether an operator has been entered to assign property of either first number or second number. $(this).data accesses the value of the input clicked on to store as firstNumberStretch and secondNumberStretch properties of stretch calculator object. Calls displayInput.
+*/
 function getNumbersStretch() {
     console.log('in getNumbersStretch');
     if(stretchCalculatorObject.operatorStretch === '') {        
@@ -112,25 +125,33 @@ function getNumbersStretch() {
     displayInput();
 }
 
-//store operator in stretch calculator object
+/** 
+* Stores operator in stretch calculator object. Calls displayInput.
+*/
 function getOperatorStretch() {
     console.log('in getOperatorStretch');
     stretchCalculatorObject.operatorStretch = $(this).data('value');
     displayInput();
 }
 
-//display input in stretch calculation field
+/** 
+* Displays the input in the stretch calculator field by targeting the stretch-calculation-field and replacing the html with an  input containing the stretch calculator object properties obtained in getNumbersStretch and getOperatorStretch.
+*/
 function displayInput() {
     console.log('in displayInput');
-    $('#stretchCalculationField').html(`<input type="text" class="full-width" readonly value="${stretchCalculatorObject.firstNumberStretch} ${stretchCalculatorObject.operatorStretch} ${stretchCalculatorObject.secondNumberStretch}">`);
+    $('#stretch-calculation-field').html(`<input type="text" class="full-width" readonly value=
+    "${stretchCalculatorObject.firstNumberStretch} ${stretchCalculatorObject.operatorStretch} ${stretchCalculatorObject.secondNumberStretch}">`);
 }
 
-//make POST request to server to send stretch calculator object
+/** 
+* Makes a POST request to server to send stretch calculator object. If POST is successful, calls stretchCalculationsFromServer for GET request.
+@return Returns false if required inputs are not completed.
+*/
 function stretchCalculatorToServer () {
     if ((stretchCalculatorObject.firstNumberStretch !== '' && stretchCalculatorObject.operatorStretch !== '' && stretchCalculatorObject.secondNumberStretch === '') ||
         (stretchCalculatorObject.firstNumberStretch !== '' && stretchCalculatorObject.operatorStretch === '' && stretchCalculatorObject.secondNumberStretch === '') ||
         (stretchCalculatorObject.firstNumberStretch === '' && stretchCalculatorObject.operatorStretch === '' && stretchCalculatorObject.secondNumberStretch === '')) {
-            alert('You haven\'t entered information to perform a calculation');
+            alert('You haven\'t entered the needed information to perform a calculation.');
             return false;
     } else {
         $.ajax({
@@ -148,6 +169,9 @@ function stretchCalculatorToServer () {
     }
 }
 
+/** 
+* Makes a GET request to server to retrieve stretchCalculationsArray. Loops through the array and appends the calculation total, first number, operator, and second number to the ul element stretch-history.
+*/
 function stretchCalculationsFromServer() {
     $.ajax({
         method: 'GET',
@@ -172,17 +196,21 @@ function stretchCalculationsFromServer() {
     });
 }
 
-//clear stretch calculator input values and object properties
+/** 
+* Sets the value of the stretch calculator object properties to undefined. Targets the stretch-calculation-field and replaces the html with an input without a value. 
+*/
 function clearNumbersStretch() {
     console.log('in clearNumbersStretch');
-    $('#stretchCalculationField').html(`<input type="text" class="full-width" readonly>`);
+    $('#stretch-calculation-field').html(`<input type="text" class="full-width" readonly>`);
     stretchCalculatorObject.firstNumberStretch = '';
     stretchCalculatorObject.operatorStretch = '';
     stretchCalculatorObject.secondNumberStretch = '';
     console.log(stretchCalculatorObject);
 }
 
-//delete history of calculations stretch history
+/** 
+* Makes a DELETE request to server to delete historical calculation objects in stretchCalculationsArray. Calls stretchCalculationsFromServer to confirm all entries have been removed.
+*/
 function deleteCalculationHistory() {
     console.log('in deleteCalculationHistory');
     $.ajax ({
@@ -197,7 +225,9 @@ function deleteCalculationHistory() {
     });
 }
 
-//rerun the historical calculation in stretch calculator
+/** 
+* Makes a POST request to server to re-run a historical calculation. Uses $(this) and siblings class to retrieve first number, operator and second number. Server searches for first number, operator, and second number within stretchCalculationsArray on server and sends calculation object with total back to client. Total is appended by targeting the stretch-calculation-field. stretch calculator object properties are set to undefined to allow for next calculation.
+*/
 function recalculate() {
     stretchCalculatorObject.firstNumberStretch = ($(this).parent().siblings('.calc-first-number').text());
     stretchCalculatorObject.operatorStretch = ($(this).parent().siblings('.calc-operator').text());
@@ -207,8 +237,8 @@ function recalculate() {
         url: '/recalculations',
         data: stretchCalculatorObject
     }).then(function(response) {
-        console.log('Back from POST:', response);
-        $('#stretchCalculationField').html(`<input type="text" class="full-width" readonly value="${response.total}">`);
+        console.log('Recalculation from server:', response);
+        $('#stretch-calculation-field').html(`<input type="text" class="full-width" readonly value="${response.total}">`);
         stretchCalculatorObject.firstNumberStretch = '';
         stretchCalculatorObject.operatorStretch = '';
         stretchCalculatorObject.secondNumberStretch = '';

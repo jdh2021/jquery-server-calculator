@@ -20,18 +20,18 @@ body {
     font-weight: bold;
 }
 
-.baseCalc {
+.base-calc {
     background-color: #B7FFCE;
     border-radius: 6px;
 }
 
-#baseCalculationsHistory {
+#base-calculations-history {
     text-align: left;
 }
 
-#baseCalculationsResult {
+#base-calculations-result {
     text-align: left;
-    font-size: 1.3em;
+    font-size: 1.2em;
     font-weight: bold;
 }
 
@@ -39,7 +39,7 @@ body {
     width: 100%;
 }
 
-.stretchCalc {
+.stretch-calc {
     background-color: #6BF98A;
     border-radius: 6px;
 }
