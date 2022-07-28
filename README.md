@@ -32,7 +32,7 @@ Additional README details can be found [here](https://github.com/PrimeAcademy/re
 
 - [X] Add conditionals to only allow entries when all inputs are provided
 - [X] Make a DELETE request to server to remove stretch calculator data
-- [ ] Create a re-run calculation function for entry in stretch calculations history
+- [X] Create a re-run calculation function for entry in stretch calculations history
 
 
 

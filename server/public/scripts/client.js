@@ -158,10 +158,13 @@ function stretchCalculationsFromServer() {
         let stretchCalculations = response;
         for (let calculation of stretchCalculations) {
             $('#stretch-history').append(`
-                <li><span class="fa-li"><i class="fa-solid fa-calculator"></i></span><span class="stretch-total">${calculation.total}</span> = ${calculation.firstNumberStretch} ${calculation.operatorStretch} ${calculation.secondNumberStretch}
+                <li><span class="fa-li"><i class="fa-solid fa-calculator"></i></span>
+                <span class="stretch-total calc-total">${calculation.total}</span> 
+                = <span class="calc-first-number">${calculation.firstNumberStretch}</span> 
+                <span class="calc-operator"">${calculation.operatorStretch}</span> 
+                <span class="calc-second-number">${calculation.secondNumberStretch}</span>
                 <span class="btn btn-sm"><i class="fa-solid fa-arrows-rotate"></i></span></li>
             `);
-            // $('#stretchCalculationField').html(`<input type="text" class="full-width" readonly value="${calculation.total}" />`);
         }       
     }).catch(function(error) {
         console.log('Error', error);
@@ -196,5 +199,21 @@ function deleteCalculationHistory() {
 
 //rerun the historical calculation in stretch calculator
 function recalculate() {
-    console.log('in recalculate');
+    stretchCalculatorObject.firstNumberStretch = ($(this).parent().siblings('.calc-first-number').text());
+    stretchCalculatorObject.operatorStretch = ($(this).parent().siblings('.calc-operator').text());
+    stretchCalculatorObject.secondNumberStretch = ($(this).parent().siblings('.calc-second-number').text());
+    $.ajax({
+        method: 'POST',
+        url: '/recalculations',
+        data: stretchCalculatorObject
+    }).then(function(response) {
+        console.log('Back from POST:', response);
+        $('#stretchCalculationField').html(`<input type="text" class="full-width" readonly value="${response.total}">`);
+        stretchCalculatorObject.firstNumberStretch = '';
+        stretchCalculatorObject.operatorStretch = '';
+        stretchCalculatorObject.secondNumberStretch = '';
+    }).catch(function(error) {
+        console.log('Error', error);
+        alert('There\'s an error.');
+    });
 }

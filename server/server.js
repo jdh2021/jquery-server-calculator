@@ -55,6 +55,17 @@ app.post('/stretchcalculations', (req, res) => {
     res.sendStatus(201);
 });
 
+app.post('/recalculations', (req, res) => {
+    console.log('in recalculations POST');
+    let recalculatorObject = req.body;
+    for (let calculation of stretchCalculationsArray) {
+        if ((recalculatorObject.firstNumberStretch === calculation.firstNumberStretch) && 
+            (recalculatorObject.operatorStretch === calculation.operatorStretch) &&
+            (recalculatorObject.secondNumberStretch === calculation.secondNumberStretch))
+        res.send(calculation);
+    }
+});
+
 app.get('/stretchcalculations', (req, res) => {
     console.log('in stretchcalculations GET');
     res.send(stretchCalculationsArray);
