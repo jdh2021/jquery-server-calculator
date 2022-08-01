@@ -13,7 +13,7 @@ In the stretch calculator, there is an option to re-run a previously listed calc
 ## To-Do List
 
 ### Part 1
-- [X] Set up file structure:
+- [X] Set up file structure
 - [X] Source css, javascript, jQuery
 - [X] Set up and test server
 - [X] Create layout and inputs for base calculator
