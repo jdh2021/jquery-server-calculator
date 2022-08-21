@@ -12,7 +12,7 @@ In the stretch calculator, there is an option to re-run a previously listed calc
 
 ## Demo
 
-Try it out [here] on Heroku!
+Try it out [here](https://agile-plateau-17369.herokuapp.com/) on Heroku!
 
 ## Built With
 
