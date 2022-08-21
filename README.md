@@ -6,13 +6,11 @@ I created two server-side calculators. The base calculator takes in a first numb
 
 In the stretch calculator, there is an option to re-run a previously listed calculation. The client sends the number and operator inputs from the calculation that was clicked on to the server. The server checks the array of stored calculation objects for a match based on these inputs. When a match is found, the server sends that calculation object with total back to the client. This calculator also has a delete capability. The client makes a DELETE request by clicking on the eraser button. The server receives the request and empties the array of stored calculations. The client loops through the emptied array, and no items are appended back to the page. 
 
-## Screen Shot
-
-![calculators](images/jQueryServerCalculators.png)
-
-## Demo
+## Demo and Screenshot
 
 Try it out [here](https://agile-plateau-17369.herokuapp.com/) on Heroku!
+
+![calculators](images/jQueryServerCalculators.png)
 
 ## Built With
 
